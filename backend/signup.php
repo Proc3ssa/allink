@@ -1,14 +1,15 @@
 <?php
-header('Content-type : Application/json');
+header('Content-type: application/json');
 header('Access-Control-Allow-Methods: POST, GET');
-header('Access-Control-Allow-Origin : *');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-type');
 
 $server_request_method = $_SERVER['REQUEST_METHOD'];
 
-if($server_request_method != 'POST'){
+if($server_request_method != 'POST' && $server_request_method != 'GET'){
 
     echo json_encode(['ok'=> false, 'message'=>'Wrong request method']);
+    exit;
 }
 
 else{
@@ -40,17 +41,17 @@ else{
 
     //fetch data
 
-    $INSERT = "INSERT INTO users VALUES($name,$email,$hashed,'')";
+    $INSERT = "INSERT INTO users (name, email, password, token) VALUES('$name','$email','$hashed','')";
     $QUERY = mysqli_query($connection, $INSERT);
 
     if($QUERY){
 
-        echo json_encode(['ok'=> 'true', 'message' => 'Account has been created']);
+        echo json_encode(['ok'=> true, 'message' => 'Account has been created']);
     }
     else{
 
    
-        echo json_encode(['ok'=> 'false', 'message' => 'Error creating account']);
+        echo json_encode(['ok'=> false, 'message' => 'Error creating account']);
 
     }
 }

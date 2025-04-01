@@ -24,7 +24,7 @@ else{
 
     if($QUERY -> num_rows == 0){
 
-        echo json_encode(['ok'=> 'fale', 'message' => 'wrong details']);
+        echo json_encode(['ok'=> 'false', 'message' => 'wrong details1']);
     }
     else{
 
@@ -36,7 +36,7 @@ else{
      echo json_encode(['ok' => true, 'message'=> 'correct details']);
     }
     else{
-        echo json_encode(['ok'=> 'fale', 'message' => 'wrong details']);
+        echo json_encode(['ok'=> 'false', 'message' => 'wrong details2']);
     }
 
     }
